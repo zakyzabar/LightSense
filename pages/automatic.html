@@ -144,8 +144,8 @@ client.on('message', (topic, message) => {
   const msg = message.toString();
   rawEl.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
 
-  const cahayaMatch = msg.match(/Cahaya:(\d+)/);
-  const lampuMatch = msg.match(/Lampu:(ON|OFF)/);
+  const cahayaMatch = msg.match(/Cahaya:(\d+)/i);
+  const lampuMatch = msg.match(/Lampu:(ON|OFF)/i);
 
   const value = cahayaMatch ? cahayaMatch[1] : '--';
   const lampuStatusVal = lampuMatch ? lampuMatch[1] : '';

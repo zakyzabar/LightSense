@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics Hub - LightSense Monitor</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <meta name="description" content="Analisis mendalam data sensor cahaya dengan visualisasi interaktif dan pengenalan pola otomatis" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flightsense2179back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+</head>
+<body class="bg-background font-inter text-text-primary antialiased">
+    <!-- Header Navigation -->
+    <header class="bg-white/95 backdrop-blur-sm border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-secondary-900">LightSense</h1>
+                        <p class="text-xs text-secondary-500">Monitor</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="live_dashboard_homepage.html" class="text-secondary-600 hover:text-primary-600 transition-colors">Dashboard</a>
+                    <a href="analytics_hub.html" class="text-primary-600 font-medium border-b-2 border-primary-600 pb-1">Analytics</a>
+                    <a href="project_setup_guide.html" class="text-secondary-600 hover:text-primary-600 transition-colors">Setup Guide</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg hover:bg-secondary-100 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Analytics Hero Section -->
+    <section class="bg-gradient-to-br from-primary-50 via-white to-accent-50 py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl lg:text-5xl font-bold text-secondary-900 mb-4">
+                    Analytics Kebun Buah
+                    <span class="text-primary-600">Data Intelligence</span>
+                </h2>
+                <p class="text-xl text-secondary-600 max-w-3xl mx-auto mb-6">
+                    Transformasi data sensor kebun buah naga menjadi wawasan yang bermakna melalui visualisasi interaktif dan analisis pola pertumbuhan otomatis
+                </p>
+                <div class="flex items-center justify-center space-x-4 text-sm text-secondary-500">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 bg-success-500 rounded-full sensor-pulse"></div>
+                        <span>Data kebun tersinkronisasi</span>
+                    </div>
+                    <div class="w-1 h-1 bg-secondary-300 rounded-full"></div>
+                    <span>Terakhir update: 24 Juli 2025, 03:44</span>
+                </div>
+            </div>
+
+            <!-- Time Range Selector -->
+            <div class="bg-white rounded-2xl p-6 shadow-floating border border-secondary-100 mb-8">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between space-y-4 lg:space-y-0">
+                    <div>
+                        <h3 class="text-lg font-semibold text-secondary-900 mb-2">Rentang Waktu Analisis Kebun buah naga</h3>
+                        <p class="text-secondary-600">Pilih periode data untuk analisis pola pertumbuhan</p>
+                    </div>
+                    <div class="flex flex-wrap items-center space-x-2 space-y-2 lg:space-y-0">
+                        <button class="bg-primary-600 text-white px-4 py-2 rounded-lg font-medium transition-colors hover:bg-primary-700">
+                            1 Jam Terakhir
+                        </button>
+                        <button class="bg-white text-secondary-700 px-4 py-2 rounded-lg font-medium border border-secondary-200 transition-colors hover:bg-secondary-50">
+                            24 Jam
+                        </button>
+                        <button class="bg-white text-secondary-700 px-4 py-2 rounded-lg font-medium border border-secondary-200 transition-colors hover:bg-secondary-50">
+                            7 Hari
+                        </button>
+                        <button class="bg-white text-secondary-700 px-4 py-2 rounded-lg font-medium border border-secondary-200 transition-colors hover:bg-secondary-50">
+                            30 Hari
+                        </button>
+                        <button class="bg-white text-secondary-700 px-4 py-2 rounded-lg font-medium border border-secondary-200 transition-colors hover:bg-secondary-50">
+                            Custom
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Analytics Dashboard -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Chart Visualization Options -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Garden Light Trends Chart -->
+                <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-floating border border-secondary-100">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-secondary-900 mb-2">Tren Cahaya Kebun buah naga</h3>
+                            <p class="text-secondary-600">Perubahan intensitas cahaya dan aktivitas automasi sepanjang waktu</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="p-2 rounded-lg hover:bg-secondary-100 transition-colors" title="Line Chart">
+                                <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4"/>
+                                </svg>
+                            </button>
+                            <button class="p-2 rounded-lg hover:bg-secondary-100 transition-colors" title="Export">
+                                <svg class="w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Chart Container -->
+                    <div class="relative h-80 bg-secondary-50 rounded-xl overflow-hidden">
+                        <svg class="w-full h-full" viewBox="0 0 800 320" aria-label="Grafik tren cahaya kebun">
+                            <!-- Grid Lines -->
+                            <defs>
+                                <pattern id="grid" width="80" height="32" patternUnits="userSpaceOnUse">
+                                    <path d="M 80 0 L 0 0 0 32" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid)"/>
+                            
+                            <!-- Chart Lines for Garden Data -->
+                            <polyline fill="none" stroke="#10B981" stroke-width="3" points="50,200 130,180 210,140 290,100 370,80 450,90 530,70 610,60 690,50 770,40"/>
+                            <polyline fill="none" stroke="#F59E0B" stroke-width="3" points="50,280 130,270 210,260 290,250 370,240 450,230 530,220 610,210 690,200 770,190"/>
+                            
+                            <!-- Data Points -->
+                            <circle cx="770" cy="40" r="4" fill="#10B981"/>
+                            <circle cx="770" cy="190" r="4" fill="#F59E0B"/>
+                        </svg>
+                        
+                        <!-- Legend -->
+                        <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-floating">
+                            <div class="flex items-center space-x-4 text-sm">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 bg-success-500 rounded-full"></div>
+                                    <span class="text-secondary-700">Level Cahaya Kebun buah naga</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 bg-accent-500 rounded-full"></div>
+                                    <span class="text-secondary-700">Status Lampu (ON/OFF)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats for Garden -->
+                <div class="space-y-6">
+                    <!-- Average Reading -->
+                    <div class="bg-white rounded-2xl p-6 shadow-floating border border-secondary-100">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-12 h-12 bg-success-100 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary-900">Rata-rata Cahaya</h4>
+                                <p class="text-sm text-secondary-500">1 jam terakhir</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-2xl font-bold text-secondary-900">502 level</div>
+                            <div class="flex items-center text-sm">
+                                <svg class="w-4 h-4 text-success-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/>
+                                </svg>
+                                <span class="text-success-600">+12.5%</span>
+                                <span class="text-secondary-500 ml-1">dari kemarin</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Automation Activity -->
+                    <div class="bg-white rounded-2xl p-6 shadow-floating border border-secondary-100">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary-900">Aktivitas Automasi</h4>
+                                <p class="text-sm text-secondary-500">Hari ini</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-2xl font-bold text-secondary-900">3x</div>
+                            <div class="text-sm text-secondary-600">
+                                Lampu otomatis menyala
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Garden Pattern Recognition -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Garden Activity Heat Map -->
+                <div class="bg-white rounded-2xl p-6 shadow-floating border border-secondary-100">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-secondary-900 mb-2">Pola Aktivitas Kebun buah naga</h3>
+                            <p class="text-secondary-600">Intensitas cahaya dan automasi berdasarkan waktu</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Heat Map Grid -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm text-secondary-600 mb-2">
+                            <span>00:00</span>
+                            <span>06:00</span>
+                            <span>12:00</span>
+                            <span>18:00</span>
+                            <span>24:00</span>
+                        </div>
+                        
+                        <!-- Garden Light Level -->
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium text-secondary-700 w-20">Cahaya</span>
+                            <div class="flex space-x-1 flex-1">
+                                <div class="h-6 bg-secondary-300 rounded flex-1"></div>
+                                <div class="h-6 bg-secondary-400 rounded flex-1"></div>
+                                <div class="h-6 bg-success-300 rounded flex-1"></div>
+                                <div class="h-6 bg-success-500 rounded flex-1"></div>
+                                <div class="h-6 bg-success-600 rounded flex-1"></div>
+                                <div class="h-6 bg-success-500 rounded flex-1"></div>
+                                <div class="h-6 bg-success-300 rounded flex-1"></div>
+                                <div class="h-6 bg-secondary-400 rounded flex-1"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Lamp Status -->
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium text-secondary-700 w-20">Lampu</span>
+                            <div class="flex space-x-1 flex-1">
+                                <div class="h-6 bg-accent-500 rounded flex-1"></div>
+                                <div class="h-6 bg-accent-400 rounded flex-1"></div>
+                                <div class="h-6 bg-secondary-200 rounded flex-1"></div>
+                                <div class="h-6 bg-secondary-200 rounded flex-1"></div>
+                                <div class="h-6 bg-secondary-200 rounded flex-1"></div>
+                                <div class="h-6 bg-secondary-200 rounded flex-1"></div>
+                                <div class="h-6 bg-accent-300 rounded flex-1"></div>
+                                <div class="h-6 bg-accent-500 rounded flex-1"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Legend -->
+                        <div class="flex items-center justify-between text-xs text-secondary-500 mt-4">
+                            <span>Rendah/OFF</span>
+                            <div class="flex space-x-1">
+                                <div class="w-4 h-4 bg-secondary-200 rounded"></div>
+                                <div class="w-4 h-4 bg-secondary-400 rounded"></div>
+                                <div class="w-4 h-4 bg-success-400 rounded"></div>
+                                <div class="w-4 h-4 bg-success-600 rounded"></div>
+                            </div>
+                            <span>Tinggi/ON</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Garden Performance Analysis -->
+                <div class="bg-white rounded-2xl p-6 shadow-floating border border-secondary-100">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-secondary-900 mb-2">Performa Kebun buah naga</h3>
+                            <p class="text-secondary-600">Efisiensi sistem dan kondisi optimal</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance Metrics -->
+                    <div class="space-y-6">
+                        <!-- Light Efficiency -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-secondary-900">Efisiensi Cahaya</span>
+                                <span class="text-sm text-secondary-600">92%</span>
+                            </div>
+                            <div class="w-full bg-secondary-100 rounded-full h-3">
+                                <div class="bg-success-500 h-3 rounded-full transition-all duration-500" style="width: 92%"></div>
+                            </div>
+                            <div class="flex items-center justify-between mt-1 text-xs text-secondary-500">
+                                <span>Optimal: 8-12 jam cahaya</span>
+                                <span>Target: 90%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Energy Savings -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-secondary-900">Penghematan Energi</span>
+                                <span class="text-sm text-secondary-600">67%</span>
+                            </div>
+                            <div class="w-full bg-secondary-100 rounded-full h-3">
+                                <div class="bg-primary-500 h-3 rounded-full transition-all duration-500" style="width: 67%"></div>
+                            </div>
+                            <div class="flex items-center justify-between mt-1 text-xs text-secondary-500">
+                                <span>vs Manual Control</span>
+                                <span>Target: 60%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- System Uptime -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-secondary-900">System Uptime</span>
+                                <span class="text-sm text-secondary-600">99.8%</span>
+                            </div>
+                            <div class="w-full bg-secondary-100 rounded-full h-3">
+                                <div class="bg-accent-500 h-3 rounded-full transition-all duration-500" style="width: 99%"></div>
+                            </div>
+                            <div class="flex items-center justify-between mt-1 text-xs text-secondary-500">
+                                <span>Koneksi IoT Stabil</span>
+                                <span>Target: 99%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Garden Insights Generator -->
+            <div class="bg-white rounded-2xl p-8 shadow-floating border border-secondary-100 mb-12">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-secondary-900 mb-4">AI Insights Kebun Buah Naga</h3>
+                    <p class="text-secondary-600 max-w-2xl mx-auto">
+                        Sistem AI menganalisis data kebun dan memberikan rekomendasi otomatis untuk optimasi pertumbuhan tanaman
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Insight 1 -->
+                    <div class="bg-gradient-to-r from-success-50 to-success-100 rounded-xl p-6 border border-success-200">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-success-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-success-900 mb-2">Kondisi Cahaya Optimal</h4>
+                                <p class="text-success-800 text-sm mb-3">
+                                    Kebun Buah Naga menunjukkan pola cahaya ideal dengan rata-rata 502 level, sangat baik untuk pertumbuhan Buah Naga.
+                                </p>
+                                <div class="flex items-center text-xs text-success-600">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span>Confidence: 96%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Insight 2 -->
+                    <div class="bg-gradient-to-r from-primary-50 to-primary-100 rounded-xl p-6 border border-primary-200">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-primary-900 mb-2">Efisiensi Automasi Tinggi</h4>
+                                <p class="text-primary-800 text-sm mb-3">
+                                    Sistem relay bekerja dengan efisiensi 67% penghematan energi. Lampu menyala hanya saat dibutuhkan, mengoptimalkan biaya operasional.
+                                </p>
+                                <div class="flex items-center text-xs text-primary-600">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/>
+                                    </svg>
+                                    <span>Penghematan: 67%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Insight 3 -->
+                    <div class="bg-gradient-to-r from-accent-50 to-accent-100 rounded-xl p-6 border border-accent-200">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-accent-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-accent-900 mb-2">Jadwal Optimal Terdeteksi</h4>
+                                <p class="text-accent-800 text-sm mb-3">
+                                    Pola cahaya menunjukkan waktu terbaik untuk aktivitas kebun: 06:00-10:00 dan 16:00-18:00 untuk perawatan tanaman.
+                                </p>
+                                <div class="flex items-center text-xs text-accent-600">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                    </svg>
+                                    <span>Akurasi: 89%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Insight 4 -->
+                    <div class="bg-gradient-to-r from-secondary-50 to-secondary-100 rounded-xl p-6 border border-secondary-200">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-secondary-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary-900 mb-2">Sistem Stabil & Reliable</h4>
+                                <p class="text-secondary-800 text-sm mb-3">
+                                    Uptime 99.8% menunjukkan koneksi IoT yang sangat stabil. Sensor LDR dan relay bekerja konsisten tanpa gangguan signifikan.
+                                </p>
+                                <div class="flex items-center text-xs text-secondary-600">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span>Uptime: 99.8%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Logo & Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">LightSense Monitor</h3>
+                            <p class="text-sm text-secondary-400">Kebun Pintar IoT</p>
+                        </div>
+                    </div>
+                    <p class="text-secondary-300 mb-4 max-w-md">
+                        Membuat teknologi IoT untuk kebun pintar yang mudah diakses melalui analytics mendalam dan otomasi cerdas.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Navigasi</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="live_dashboard_homepage.html" class="hover:text-white transition-colors">Dashboard</a></li>
+                        <li><a href="analytics_hub.html" class="hover:text-white transition-colors">Analytics</a></li>
+                        <li><a href="project_setup_guide.html" class="hover:text-white transition-colors">Setup Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-secondary-800 mt-8 pt-8 text-center text-secondary-400">
+                <p>&copy; 2025 LightSense Monitor. Semua hak dilindungi undang-undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactive Features -->
+    <script>
+        // Time range selector functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const timeButtons = document.querySelectorAll('button');
+            
+            timeButtons.forEach(button => {
+                if (button.textContent.includes('Jam') || button.textContent.includes('Hari') || button.textContent.includes('Custom')) {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all time buttons
+                        timeButtons.forEach(btn => {
+                            if (btn.textContent.includes('Jam') || btn.textContent.includes('Hari') || btn.textContent.includes('Custom')) {
+                                btn.classList.remove('bg-primary-600', 'text-white');
+                                btn.classList.add('bg-white', 'text-secondary-700', 'border', 'border-secondary-200');
+                            }
+                        });
+                        
+                        // Add active class to clicked button
+                        this.classList.remove('bg-white', 'text-secondary-700', 'border', 'border-secondary-200');
+                        this.classList.add('bg-primary-600', 'text-white');
+                        
+                        // Simulate data update
+                        updateChartData();
+                    });
+                }
+            });
+        });
+
+        // Chart data update simulation
+        function updateChartData() {
+            const chartLines = document.querySelectorAll('polyline');
+            chartLines.forEach(line => {
+                line.style.opacity = '0.5';
+                setTimeout(() => {
+                    line.style.opacity = '1';
+                }, 300);
+            });
+        }
+
+        // Export format selection
+        document.addEventListener('DOMContentLoaded', function() {
+            const formatButtons = document.querySelectorAll('button');
+            
+            formatButtons.forEach(button => {
+                if (['CSV', 'JSON', 'Excel', 'PDF'].includes(button.textContent.trim())) {
+                    button.addEventListener('click', function() {
+                        // Remove active class from format buttons
+                        formatButtons.forEach(btn => {
+                            if (['CSV', 'JSON', 'Excel', 'PDF'].includes(btn.textContent.trim())) {
+                                btn.classList.remove('bg-primary-50', 'text-primary-700', 'border-primary-200');
+                                btn.classList.add('bg-secondary-50', 'text-secondary-700', 'border-secondary-200');
+                            }
+                        });
+                        
+                        // Add active class to clicked button
+                        this.classList.remove('bg-secondary-50', 'text-secondary-700', 'border-secondary-200');
+                        this.classList.add('bg-primary-50', 'text-primary-700', 'border-primary-200');
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('button');
+        if (mobileMenuButton && mobileMenuButton.querySelector('svg path[d*="M4 6h16M4 12h16M4 18h16"]')) {
+            mobileMenuButton.addEventListener('click', function() {
+                console.log('Mobile menu toggled');
+            });
+        }
+
+        // Simulate real-time data updates for insights
+        function updateInsights() {
+            const confidenceElements = document.querySelectorAll('[class*="Confidence"]');
+            confidenceElements.forEach(element => {
+                if (element.textContent.includes('Confidence:')) {
+                    const currentValue = parseInt(element.textContent.match(/\d+/)[0]);
+                    const newValue = Math.max(85, Math.min(98, currentValue + Math.floor(Math.random() * 3) - 1));
+                    element.textContent = element.textContent.replace(/\d+%,/g, newValue + '%');
+                }
+            });
+        }
+
+        // Update insights every 30 seconds
+        setInterval(updateInsights, 30000);
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LightSense Monitor - Dashboard Real-time</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <meta name="description" content="Monitor sensor cahaya IoT secara real-time dengan visualisasi data yang elegan dan mudah dipahami" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flightsense2179back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+</head>
+<body class="bg-background font-inter text-text-primary antialiased">
+    <!-- Header Navigation -->
+    <header class="bg-white/95 backdrop-blur-sm border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-secondary-900">LightSense</h1>
+                        <p class="text-xs text-secondary-500">Monitor</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="live_dashboard_homepage.html" class="text-primary-600 font-medium border-b-2 border-primary-600 pb-1">Dashboard</a>
+                    <a href="analytics_hub.html" class="text-secondary-600 hover:text-primary-600 transition-colors">Analytics</a>
+                    <a href="project_setup_guide.html" class="text-secondary-600 hover:text-primary-600 transition-colors">Setup Guide</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg hover:bg-secondary-100 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Live Data -->
+    <section class="bg-gradient-to-br from-primary-50 via-white to-accent-50 py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl lg:text-6xl font-bold text-secondary-900 mb-4">
+                    Monitor Kebun Buah Pintar
+
+                    <span class="text-primary-600">Real-time</span>
+                </h2>
+                <p class="text-xl text-secondary-600 max-w-3xl mx-auto mb-8">
+                    Visualisasi data IoT yang elegan untuk monitoring kebun buah naga Anda. Pantau kondisi cahaya dan sistem otomatis dengan teknologi MQTT dan dashboard interaktif.
+                </p>
+                <div class="flex items-center justify-center space-x-4 text-sm text-secondary-500">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 bg-success-500 rounded-full sensor-pulse"></div>
+                        <span>Status: Terhubung</span>
+                    </div>
+                    <div class="w-1 h-1 bg-secondary-300 rounded-full"></div>
+                    <span>Terakhir update: 24 Juli 2025, 03:44</span>
+                </div>
+            </div>
+
+<!-- Live Sensor Cards for Garden + Monitoring -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 items-stretch">
+
+  <!-- Kebun Sayuran Card -->
+  <div class="bg-white rounded-2xl p-6 shadow-floating border border-secondary-100 
+              hover:shadow-elevated transition-all duration-300 flex flex-col justify-between min-h-[500px]">
+    <div class="flex flex-col justify-between h-full">
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 bg-success-100 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-success-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-secondary-900">Kebun Buah Naga</h3>
+              <p class="text-sm text-secondary-500">Sensor Cahaya LDR #001</p>
+            </div>
+          </div>
+          <div class="w-3 h-3 bg-success-500 rounded-full sensor-pulse"></div>
+        </div>
+
+        <!-- Real-time LDR content -->
+        <div class="space-y-4">
+          <div class="flex items-end space-x-2">
+            <span id="ldr-value" class="text-4xl font-bold text-secondary-900 data-fade">-</span>
+            <span class="text-secondary-500 mb-1">level cahaya</span>
+          </div>
+          <div class="w-full bg-secondary-100 rounded-full h-3">
+            <div id="ldr-bar" class="bg-success-500 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+          <div class="flex justify-between text-sm text-secondary-500">
+            <span>Optimal untuk pertumbuhan</span>
+            <span id="ldr-percent">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-4 border-t border-secondary-100">
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 bg-success-500 rounded-full"></div>
+            <span id="lampu-status" class="text-secondary-700">Lampu: OFF</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 bg-primary-500 rounded-full"></div>
+            <span id="auto-mode-status" class="text-secondary-700">Auto Mode: ON</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lampu Realtime Card -->
+  <div class="bg-white rounded-2xl p-6 shadow-floating border border-secondary-100 
+              hover:shadow-elevated transition-all duration-300 flex flex-col justify-between min-h-[500px]">
+    <div class="flex flex-col justify-between h-full">
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-yellow-600 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 4v5h.582M20 20v-5h-.581M4 20h5v-.582M20 4h-5v.581M12 2v2m0 16v2m10-10h-2M4 12H2"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-secondary-900">Lampu Realtime</h3>
+              <p class="text-sm text-secondary-500">Live MQTT Monitoring</p>
+            </div>
+          </div>
+          <div class="w-3 h-3 bg-green-500 rounded-full sensor-pulse"></div>
+        </div>
+
+        <!-- Iframe Penuh -->
+        <div class="w-full rounded-xl border border-secondary-100 shadow-inner overflow-hidden">
+<iframe 
+  id="lampFrame"
+  src="automatic.html" 
+  class="w-full"
+  style="border: none; min-height: 400px;" 
+  scrolling="no"
+  title="Monitoring Realtime Lampu Kebun">
+</iframe>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <!-- Quick Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="project_setup_guide.html" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-floating hover:shadow-elevated">
+                    Setup Kebun Pintar Anda
+                </a>
+                <a href="analytics_hub.html" class="bg-white hover:bg-secondary-50 text-secondary-900 px-8 py-3 rounded-xl font-semibold border border-secondary-200 transition-colors shadow-floating hover:shadow-elevated">
+                    Analisis Data Kebun
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">
+                    Bagaimana Sistem Kebun Pintar Bekerja
+                </h2>
+                <p class="text-xl text-secondary-600 max-w-3xl mx-auto">
+                    Sistem monitoring IoT yang menggunakan sensor LDR dan relay untuk automasi pencahayaan kebun dengan protokol MQTT
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3" alt="ESP32 and LDR Sensor" class="w-16 h-16 object-cover rounded-xl" onerror="this.src='https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;" />
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-3">Sensor LDR</h3>
+                    <p class="text-secondary-600">
+                        Sensor LDR mengukur intensitas cahaya ambient di kebun dan mengirim data melalui ESP32 menggunakan protokol MQTT
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-accent-100 to-accent-200 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-12 h-12 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-3">Transmisi Data</h3>
+                    <p class="text-secondary-600">
+                        Data dikirim secara real-time melalui MQTT broker ke dashboard untuk monitoring dan pengambilan keputusan otomatis
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-success-100 to-success-200 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-12 h-12 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-3">Automasi Lampu</h3>
+                    <p class="text-secondary-600">
+                        Relay 5V mengontrol lampu 10W secara otomatis berdasarkan tingkat cahaya, memastikan tanaman mendapat pencahayaan optimal
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learn While You Watch Sidebar -->
+    <section class="py-16 bg-gradient-to-r from-secondary-50 to-primary-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-secondary-900 mb-6">
+                        Monitoring Kebun Real-time
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-xl p-6 shadow-floating">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-success-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-4 h-4 text-success-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-secondary-900 mb-2">Level Cahaya Optimal</h3>
+                                    <p class="text-secondary-600 text-sm">
+                                        Nilai 502 menunjukkan kondisi pencahayaan yang baik untuk pertumbuhan sayuran. Sistem otomatis akan menyalakan lampu tambahan jika diperlukan.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6 shadow-floating">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-secondary-900 mb-2">Relay Automation</h3>
+                                    <p class="text-secondary-600 text-sm">
+                                        Relay 5V SRD-05VDC-SL-C mengontrol lampu 10W dengan presisi, menghemat energi dan memastikan tanaman mendapat cahaya yang cukup.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6 shadow-floating">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-accent-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-4 h-4 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-secondary-900 mb-2">Status Koneksi</h3>
+                                    <p class="text-secondary-600 text-sm">
+                                        Indikator hijau menunjukkan koneksi IoT stabil. Sistem menggunakan WiFi untuk komunikasi MQTT dengan reconnection otomatis.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2825&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Smart Garden IoT System" class="w-full h-96 object-cover rounded-2xl shadow-elevated" onerror="this.src='https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary-900/20 to-transparent rounded-2xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Activity Feed -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">
+                    Aktivitas Kebun buah naga Terkini
+                </h2>
+                <p class="text-xl text-secondary-600">
+                    Update real-time dari sensor kebun buah naga dan sistem automasi
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Garden Sensor Events -->
+                <div class="bg-secondary-50 rounded-2xl p-6">
+                    <h3 class="font-semibold text-secondary-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 text-success-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        Event Sensor Kebun buah naga
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="bg-white rounded-lg p-3 text-sm">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-medium text-secondary-900">Sensor LDR #001</span>
+                                <span class="text-secondary-500">2 menit lalu</span>
+                            </div>
+                            <p class="text-secondary-600">Level cahaya optimal: 502 (+5% dari sebelumnya)</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 text-sm">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-medium text-secondary-900">Relay Control</span>
+                                <span class="text-secondary-500">5 menit lalu</span>
+                            </div>
+                            <p class="text-secondary-600">Lampu otomatis OFF - cahaya alami mencukupi</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 text-sm">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-medium text-secondary-900">System Status</span>
+                                <span class="text-secondary-500">8 menit lalu</span>
+                            </div>
+                            <p class="text-secondary-600">Koneksi WiFi stabil - RSSI: -45 dBm</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Garden Tips & Insights -->
+                <div class="bg-secondary-50 rounded-2xl p-6">
+                    <h3 class="font-semibold text-secondary-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 text-primary-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                        Tips Kebun buah naga Pintar
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="bg-white rounded-lg p-3 text-sm">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-medium text-secondary-900">Pencahayaan Optimal</span>
+                                <span class="text-secondary-500">Tips Hari Ini</span>
+                            </div>
+                            <p class="text-secondary-600">Buah Naga membutuhkan 6-8 jam cahaya per hari untuk pertumbuhan optimal</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 text-sm">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-medium text-secondary-900">Hemat Energi</span>
+                                <span class="text-secondary-500">Rekomendasi</span>
+                            </div>
+                            <p class="text-secondary-600">Sistem otomatis menghemat hingga 60% konsumsi listrik dibanding manual</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 text-sm">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-medium text-secondary-900">Maintenance</span>
+                                <span class="text-secondary-500">Reminder</span>
+                            </div>
+                            <p class="text-secondary-600">Bersihkan sensor LDR setiap 2 minggu untuk akurasi maksimal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Logo & Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">LightSense Monitor</h3>
+                            <p class="text-sm text-secondary-400">Kebun Buah Naga Pintar IoT</p>
+                        </div>
+                    </div>
+                    <p class="text-secondary-300 mb-4 max-w-md">
+                        Membuat teknologi IoT untuk kebun buah naga pintar yang mudah diakses melalui monitoring real-time dan automasi cerdas.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Navigasi</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="live_dashboard_homepage.html" class="hover:text-white transition-colors">Dashboard</a></li>
+                        <li><a href="analytics_hub.html" class="hover:text-white transition-colors">Analytics</a></li>
+                        <li><a href="project_setup_guide.html" class="hover:text-white transition-colors">Setup Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-secondary-800 mt-8 pt-8 text-center text-secondary-400">
+                <p>&copy; 2025 LightSense Monitor. Semua hak dilindungi undang-undang.</p>
+            </div>
+        </div>
+    </footer>
+
+<!-- Load MQTT -->
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+
+<!-- JavaScript for Real-time MQTT Updates -->
+<script>
+  const client = mqtt.connect('wss://rmq.corex.id:8084/mqtt', {
+    clean: true,
+    connectTimeout: 4000,
+    clientId: 'kebun_' + Math.random().toString(16).substr(2, 8),
+    username: 'kelompok11',
+    password: 'kelompok11',
+  });
+
+  client.on('connect', () => {
+    console.log("✅ Terhubung ke MQTT");
+    client.subscribe('iot/cahaya');
+  });
+
+  client.on('message', (topic, message) => {
+    const msg = message.toString();
+    console.log("📨 Pesan MQTT:", msg);
+
+    const parts = msg.split(',');
+    const nilaiSensor = parts[0]?.split(':')[1]?.trim() || "0";
+    const statusLampu = parts[1]?.split(':')[1]?.trim() || "-";
+    const statusAuto = parts[2]?.split(':')[1]?.trim() || "-";
+
+    // Update nilai angka LDR
+    const ldrValue = document.getElementById("ldr-value");
+    if (ldrValue) {
+      ldrValue.innerText = nilaiSensor;
+    }
+
+    // Update progress bar
+    const ldrBar = document.getElementById("ldr-bar");
+    const persen = Math.min(100, Math.max(0, (parseInt(nilaiSensor) / 502) * 100));
+    if (ldrBar) {
+      ldrBar.style.width = persen.toFixed(0) + "%";
+    }
+
+    // Update persen teks
+    const persenText = document.getElementById("ldr-percent");
+    if (persenText) {
+      persenText.innerText = persen.toFixed(0) + "%";
+    }
+
+    // Update status lampu
+    const statusEl = document.getElementById("lampu-status");
+    if (statusEl) {
+      statusEl.innerText = "Lampu: " + statusLampu;
+    }
+
+    // Update status auto mode
+    const autoModeEl = document.getElementById("auto-mode-status");
+    if (autoModeEl) {
+      autoModeEl.innerText = "Auto Mode: " + statusAuto;
+    }
+  });
+
+  // Untuk menyesuaikan tinggi iframe (lampu realtime)
+  window.addEventListener("message", function (event) {
+    if (event.data && event.data.frameHeight) {
+      const frame = document.getElementById("lampFrame");
+      if (frame) {
+        frame.style.height = event.data.frameHeight + "px";
+      }
+    }
+  });
+</script>
+
+
+<!-- Opsional jika masih pakai injector -->
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+
+</body>
+</html>

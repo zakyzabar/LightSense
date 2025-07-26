@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panduan Setup Proyek - LightSense Monitor</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <meta name="description" content="Panduan lengkap setup proyek IoT sensor cahaya dengan diagram hardware, kode siap pakai, dan dukungan komunitas" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flightsense2179back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+</head>
+<body class="bg-background font-inter text-text-primary antialiased">
+    <!-- Header Navigation -->
+    <header class="bg-white/95 backdrop-blur-sm border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-secondary-900">LightSense</h1>
+                        <p class="text-xs text-secondary-500">Monitor</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="live_dashboard_homepage.html" class="text-secondary-600 hover:text-primary-600 transition-colors">Dashboard</a>
+                    <a href="analytics_hub.html" class="text-secondary-600 hover:text-primary-600 transition-colors">Analytics</a>
+                    <a href="project_setup_guide.html" class="text-primary-600 font-medium border-b-2 border-primary-600 pb-1">Setup Guide</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg hover:bg-secondary-100 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-primary-50 via-white to-accent-50 py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl lg:text-6xl font-bold text-secondary-900 mb-4">
+                    Setup Kebun Pintar
+                    <span class="text-primary-600">IoT Real-time</span>
+                </h2>
+                <p class="text-xl text-secondary-600 max-w-3xl mx-auto mb-8">
+                    Ikuti panduan langkah demi langkah untuk membangun sistem monitoring kebun pintar dengan automasi lampu. Dari hardware hingga software, semuanya dijelaskan dengan detail.
+                </p>
+                <div class="flex items-center justify-center space-x-4 text-sm text-secondary-500">
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-4 h-4 text-success-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>Estimasi waktu: 3-4 jam</span>
+                    </div>
+                    <div class="w-1 h-1 bg-secondary-300 rounded-full"></div>
+                    <span>Level: Pemula hingga Menengah</span>
+                    <div class="w-1 h-1 bg-secondary-300 rounded-full"></div>
+                    <span>Biaya: Rp 200.000 - 350.000</span>
+                </div>
+            </div>
+
+            <!-- Quick Start Options -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white rounded-2xl p-6 shadow-floating border border-secondary-100 hover:shadow-elevated transition-all duration-300">
+                    <div class="w-12 h-12 bg-success-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-3">Setup Dasar</h3>
+                    <p class="text-secondary-600 mb-4">Mulai dengan konfigurasi dasar menggunakan ESP32 DevKit V1 dan sensor LDR</p>
+                    <a href="#quick-start" class="text-success-600 font-medium hover:text-success-700 transition-colors">Mulai Sekarang →</a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-floating border border-secondary-100 hover:shadow-elevated transition-all duration-300">
+                    <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-3">Automasi Lampu</h3>
+                    <p class="text-secondary-600 mb-4">Konfigurasi relay dan lampu 10W dengan kontrol otomatis berdasarkan cahaya</p>
+                    <a href="#advanced-setup" class="text-primary-600 font-medium hover:text-primary-700 transition-colors">Pelajari Lebih →</a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-floating border border-secondary-100 hover:shadow-elevated transition-all duration-300">
+                    <div class="w-12 h-12 bg-accent-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-3">Monitoring Real-time</h3>
+                    <p class="text-secondary-600 mb-4">Setup dashboard dan integrasi MQTT untuk monitoring kebun secara real-time</p>
+                    <a href="#customization" class="text-accent-600 font-medium hover:text-accent-700 transition-colors">Eksplorasi →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Component Overview -->
+    <section id="components" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">
+                    Komponen Kebun Pintar
+                </h2>
+                <p class="text-xl text-secondary-600 max-w-3xl mx-auto">
+                    Daftar lengkap hardware dan estimasi biaya untuk membangun sistem monitoring kebun dengan automasi lampu
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                <!-- Hardware List -->
+                <div class="bg-secondary-50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-semibold text-secondary-900 mb-6 flex items-center">
+                        <svg class="w-6 h-6 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                        </svg>
+                        Hardware Utama
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-white rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3" alt="ESP32 DevKit V1" class="w-12 h-12 object-cover rounded-lg" onerror="this.src='https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;" />
+                                <div>
+                                    <h4 class="font-semibold text-secondary-900">ESP32 DevKit V1</h4>
+                                    <p class="text-sm text-secondary-500">Mikrokontroler dengan WiFi built-in</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-semibold text-secondary-900">Rp 85.000</p>
+                                <p class="text-sm text-secondary-500">1x unit</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Kabel Jumper" class="w-12 h-12 object-cover rounded-lg" onerror="this.src='https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;" />
+                                <div>
+                                    <h4 class="font-semibold text-secondary-900">Kabel Jumper</h4>
+                                    <p class="text-sm text-secondary-500">Male to Female & Female to Female</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-semibold text-secondary-900">Rp 25.000</p>
+                                <p class="text-sm text-secondary-500">1x set</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <img src="https://images.pixabay.com/photo-2020/05/18/16/17/sensor-5187876_1280.jpg?q=80&w=400&auto=format&fit=crop" alt="Sensor LDR" class="w-12 h-12 object-cover rounded-lg" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
+                                <div>
+                                    <h4 class="font-semibold text-secondary-900">Sensor LDR</h4>
+                                    <p class="text-sm text-secondary-500">Light Dependent Resistor</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-semibold text-secondary-900">Rp 15.000</p>
+                                <p class="text-sm text-secondary-500">1x unit</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <img src="https://images.pixabay.com/photo-2017/05/10/19/29/cable-2301916_1280.jpg?q=80&w=400&auto=format&fit=crop" alt="Kabel Micro USB" class="w-12 h-12 object-cover rounded-lg" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
+                                <div>
+                                    <h4 class="font-semibold text-secondary-900">Kabel Micro USB</h4>
+                                    <p class="text-sm text-secondary-500">Untuk programming & power</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-semibold text-secondary-900">Rp 15.000</p>
+                                <p class="text-sm text-secondary-500">1x unit</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Resistor 10k" class="w-12 h-12 object-cover rounded-lg" onerror="this.src='https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;" />
+                                <div>
+                                    <h4 class="font-semibold text-secondary-900">Resistor 10kΩ</h4>
+                                    <p class="text-sm text-secondary-500">Pull-up resistor untuk LDR</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-semibold text-secondary-900">Rp 5.000</p>
+                                <p class="text-sm text-secondary-500">1x unit</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Relay 5V" class="w-12 h-12 object-cover rounded-lg" onerror="this.src='https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;" />
+                                <div>
+                                    <h4 class="font-semibold text-secondary-900">Relay 5V SRD-05VDC-SL-C</h4>
+                                    <p class="text-sm text-secondary-500">Untuk kontrol lampu AC</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-semibold text-secondary-900">Rp 25.000</p>
+                                <p class="text-sm text-secondary-500">1x unit</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <img src="https://images.pixabay.com/photo-2017/05/10/19/29/cable-2301916_1280.jpg?q=80&w=400&auto=format&fit=crop" alt="Kabel AC" class="w-12 h-12 object-cover rounded-lg" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
+                                <div>
+                                    <h4 class="font-semibold text-secondary-900">Kabel AC & Kepala Adaptor</h4>
+                                    <p class="text-sm text-secondary-500">Untuk instalasi listrik</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-semibold text-secondary-900">Rp 35.000</p>
+                                <p class="text-sm text-secondary-500">1x set</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Fitting dan Lampu" class="w-12 h-12 object-cover rounded-lg" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
+                                <div>
+                                    <h4 class="font-semibold text-secondary-900">Fitting & Lampu 10W</h4>
+                                    <p class="text-sm text-secondary-500">LED untuk penerangan kebun</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-semibold text-secondary-900">Rp 45.000</p>
+                                <p class="text-sm text-secondary-500">1x set</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-secondary-200 pt-4 mt-6">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-semibold text-secondary-900">Total Estimasi:</span>
+                                <span class="text-2xl font-bold text-primary-600">Rp 250.000</span>
+                            </div>
+                            <p class="text-sm text-secondary-500 mt-2">*Harga dapat bervariasi tergantung supplier dan kualitas komponen</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wiring Diagram -->
+                <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-semibold text-secondary-900 mb-6 flex items-center">
+                        <svg class="w-6 h-6 text-accent-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        Diagram Wiring Kebun Pintar
+                    </h3>
+                    
+                    <!-- Interactive Wiring Diagram -->
+                    <div class="bg-white rounded-xl p-6 mb-6">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3" alt="ESP32 LDR Relay Wiring Diagram" class="w-full h-64 object-cover rounded-lg mb-4" onerror="this.src='https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=600'; this.onerror=null;" />
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-secondary-900 mb-2">ESP32 DevKit V1:</h4>
+                                <ul class="space-y-1 text-secondary-600">
+                                    <li>• 3.3V → VCC (Relay)</li>
+                                    <li>• GND → GND (Common)</li>
+                                    <li>• GPIO2 → Control (Relay)</li>
+                                    <li>• A0 → LDR + Resistor 10kΩ</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary-900 mb-2">Relay 5V:</h4>
+                                <ul class="space-y-1 text-secondary-600">
+                                    <li>• VCC → 3.3V ESP32</li>
+                                    <li>• GND → Ground</li>
+                                    <li>• IN → GPIO2</li>
+                                    <li>• NO/COM → AC Line (Lampu)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-accent-100 rounded-xl p-4">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-accent-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold text-accent-800 mb-1">Keamanan Listrik:</h4>
+                                <p class="text-sm text-accent-700">Pastikan instalasi AC dilakukan oleh teknisi berpengalaman. Gunakan MCB/sekering untuk proteksi rangkaian.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Setup -->
+    <section id="quick-start" class="py-16 bg-secondary-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">
+                    Setup Software Kebun Pintar
+                </h2>
+                <p class="text-xl text-secondary-600 max-w-3xl mx-auto">
+                    Instalasi Arduino IDE, library, dan konfigurasi kode untuk sistem monitoring kebun dengan automasi
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Step-by-Step Guide -->
+                <div class="space-y-6">
+                    <!-- Step 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-floating">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <span class="text-primary-600 font-semibold">1</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-secondary-900 mb-3">Install Arduino IDE</h3>
+                                <p class="text-secondary-600 mb-4">Download dan install Arduino IDE versi terbaru dari website resmi Arduino.</p>
+                                <div class="bg-secondary-50 rounded-lg p-4">
+                                    <p class="text-sm text-secondary-700 font-mono">
+                                        Download: https://www.arduino.cc/en/software
+                                    </p>
+                                </div>
+                                <div class="mt-4 flex space-x-3">
+                                    <a href="javascript:void(0)" class="bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-700 transition-colors">
+                                        Download IDE
+                                    </a>
+                                    <button class="bg-secondary-100 text-secondary-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-secondary-200 transition-colors">
+                                        Video Tutorial
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-floating">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <span class="text-primary-600 font-semibold">2</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-secondary-900 mb-3">Setup ESP32 Board</h3>
+                                <p class="text-secondary-600 mb-4">Tambahkan ESP32 board manager ke Arduino IDE.</p>
+                                <div class="bg-secondary-50 rounded-lg p-4 mb-4">
+                                    <p class="text-sm text-secondary-700 font-mono mb-2">
+                                        File → Preferences → Additional Board Manager URLs:
+                                    </p>
+                                    <p class="text-sm text-secondary-700 font-mono break-all">
+                                        https://dl.espressif.com/dl/package_esp32_index.json
+                                    </p>
+                                </div>
+                                <div class="bg-accent-50 rounded-lg p-3">
+                                    <p class="text-sm text-accent-700">
+                                        <strong>Kemudian:</strong> Tools → Board → Boards Manager → Cari "ESP32" → Install
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-floating">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <span class="text-primary-600 font-semibold">3</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-secondary-900 mb-3">Install Library</h3>
+                                <p class="text-secondary-600 mb-4">Install library yang diperlukan untuk LDR sensor dan MQTT.</p>
+                                <div class="space-y-3">
+                                    <div class="bg-secondary-50 rounded-lg p-3">
+                                        <p class="text-sm font-semibold text-secondary-900">Library Manager → Install:</p>
+                                        <ul class="text-sm text-secondary-700 mt-2 space-y-1">
+                                            <li>• WiFi by Arduino</li>
+                                            <li>• PubSubClient by Nick O'Leary</li>
+                                            <li>• ArduinoJson by Benoit Blanchon</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Download Section -->
+                <div class="bg-white rounded-2xl p-8 shadow-floating">
+                    <h3 class="text-2xl font-semibold text-secondary-900 mb-6 flex items-center">
+                        <svg class="w-6 h-6 text-success-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Download Kode Kebun Pintar
+                    </h3>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="border border-secondary-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-semibold text-secondary-900">garden_smart_basic.ino</h4>
+                                <span class="text-sm text-secondary-500">18 KB</span>
+                            </div>
+                            <p class="text-sm text-secondary-600 mb-3">Kode dasar sensor LDR dengan relay automation dan MQTT</p>
+                            <div class="flex space-x-2">
+                            <button onclick="downloadFile()"
+                                class="bg-success-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-success-700 transition-colors">
+                                    Download
+                                </button>
+                                <button class="bg-secondary-100 text-secondary-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-secondary-200 transition-colors">
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+
+                    <div class="bg-primary-50 rounded-xl p-4">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold text-primary-800 mb-1">Paket Lengkap Kebun Pintar:</h4>
+                                <p class="text-sm text-primary-700 mb-3">Download semua file termasuk dokumentasi instalasi listrik dan kalibrasi sensor.</p>
+                                <button class="bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-primary-700 transition-colors">
+                                    Download Paket Lengkap (54 KB)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section class="py-16 bg-secondary-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">
+                    Troubleshooting
+                </h2>
+                <p class="text-xl text-secondary-600 max-w-3xl mx-auto">
+                    Solusi untuk masalah umum yang mungkin Anda temui selama setup
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Common Issues -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl p-6 shadow-floating">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-error-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-error-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-secondary-900 mb-2">ESP32 Tidak Terdeteksi</h3>
+                                <p class="text-secondary-600 text-sm mb-3">Board ESP32 tidak muncul di Arduino IDE atau tidak bisa di-upload.</p>
+                                <div class="bg-secondary-50 rounded-lg p-3">
+                                    <p class="text-sm text-secondary-700 font-semibold mb-2">Solusi:</p>
+                                    <ul class="text-sm text-secondary-600 space-y-1">
+                                        <li>• Install driver CP2102 atau CH340</li>
+                                        <li>• Tekan tombol BOOT saat upload</li>
+                                        <li>• Cek kabel USB (gunakan kabel data)</li>
+                                        <li>• Pilih port COM yang benar</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-floating">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-warning-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-warning-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-secondary-900 mb-2">WiFi Tidak Terhubung</h3>
+                                <p class="text-secondary-600 text-sm mb-3">ESP32 gagal connect ke jaringan WiFi.</p>
+                                <div class="bg-secondary-50 rounded-lg p-3">
+                                    <p class="text-sm text-secondary-700 font-semibold mb-2">Solusi:</p>
+                                    <ul class="text-sm text-secondary-600 space-y-1">
+                                        <li>• Pastikan SSID dan password benar</li>
+                                        <li>• Gunakan WiFi 2.4GHz (bukan 5GHz)</li>
+                                        <li>• Cek jarak dari router</li>
+                                        <li>• Restart ESP32 dan router</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-floating">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-secondary-900 mb-2">Sensor Tidak Terbaca</h3>
+                                <p class="text-secondary-600 text-sm mb-3">BH1750 tidak memberikan data atau nilai selalu 0.</p>
+                                <div class="bg-secondary-50 rounded-lg p-3">
+                                    <p class="text-sm text-secondary-700 font-semibold mb-2">Solusi:</p>
+                                    <ul class="text-sm text-secondary-600 space-y-1">
+                                        <li>• Cek wiring SDA/SCL</li>
+                                        <li>• Pastikan power 3.3V stabil</li>
+                                        <li>• Scan I2C address (0x23 atau 0x5C)</li>
+                                        <li>• Ganti sensor jika rusak</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Community Help -->
+                <div class="bg-white rounded-2xl p-8 shadow-floating">
+                    <h3 class="text-2xl font-semibold text-secondary-900 mb-6 flex items-center">
+                        <svg class="w-6 h-6 text-accent-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        Bantuan Komunitas
+                    </h3>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="border border-secondary-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-secondary-900 mb-2">Forum Diskusi</h4>
+                            <p class="text-sm text-secondary-600 mb-3">Bergabung dengan komunitas IoT Indonesia untuk bertanya dan berbagi pengalaman.</p>
+                            <a href="javascript:void(0)" class="text-primary-600 font-medium hover:text-primary-700 transition-colors text-sm">
+                                Kunjungi Forum →
+                            </a>
+                        </div>
+
+                        <div class="border border-secondary-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-secondary-900 mb-2">Video Chat Support</h4>
+                            <p class="text-sm text-secondary-600 mb-3">Sesi bantuan langsung setiap Selasa & Kamis, 19:00-21:00 WIB.</p>
+                            <a href="javascript:void(0)" class="text-accent-600 font-medium hover:text-accent-700 transition-colors text-sm">
+                                Join Meeting →
+                            </a>
+                        </div>
+
+                        <div class="border border-secondary-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-secondary-900 mb-2">Peer Mentoring</h4>
+                            <p class="text-sm text-secondary-600 mb-3">Terhubung dengan mentor berpengalaman untuk guidance personal.</p>
+                            <a href="javascript:void(0)" class="text-success-600 font-medium hover:text-success-700 transition-colors text-sm">
+                                Cari Mentor →
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-primary-50 to-accent-50 rounded-xl p-4">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Community Helper" class="w-12 h-12 rounded-full object-cover" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;" />
+                            <div>
+                                <p class="font-semibold text-secondary-900">Ahmad Rizki</p>
+                                <p class="text-sm text-secondary-600">Community Moderator</p>
+                                <p class="text-sm text-primary-600">"Siap membantu troubleshooting 24/7!"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Implementations -->
+    <section id="customization" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">
+                    Implementasi Pengguna
+                </h2>
+                <p class="text-xl text-secondary-600 max-w-3xl mx-auto">
+                    Lihat bagaimana komunitas menggunakan dan memodifikasi proyek LightSense Monitor
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Implementation 1 -->
+                <div class="bg-secondary-50 rounded-2xl p-6 hover:shadow-elevated transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Smart Greenhouse Project" class="w-full h-48 object-cover rounded-xl mb-4" onerror="this.src='https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;" />
+                    <div class="flex items-center space-x-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=50&auto=format&fit=crop&ixlib=rb-4.0.3" alt="User Avatar" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=50'; this.onerror=null;" />
+                        <div>
+                            <p class="font-semibold text-secondary-900">Budi Santoso</p>
+                            <p class="text-sm text-secondary-500">Jakarta</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-2">Smart Greenhouse</h3>
+                    <p class="text-secondary-600 text-sm mb-4">
+                        Menggunakan 8 sensor BH1750 untuk monitoring cahaya di greenhouse hidroponik. Terintegrasi dengan sistem irigasi otomatis.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex space-x-2">
+                            <span class="bg-success-100 text-success-700 px-2 py-1 rounded-lg text-xs font-medium">ESP32</span>
+                            <span class="bg-primary-100 text-primary-700 px-2 py-1 rounded-lg text-xs font-medium">8 Sensors</span>
+                        </div>
+                        <a href="javascript:void(0)" class="text-primary-600 font-medium hover:text-primary-700 transition-colors text-sm">
+                            Lihat Detail →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Implementation 2 -->
+                <div class="bg-secondary-50 rounded-2xl p-6 hover:shadow-elevated transition-all duration-300">
+                    <img src="https://images.pixabay.com/photo-2017/08/10/08/47/laptop-2619337_1280.jpg?q=80&w=400&auto=format&fit=crop" alt="Office Lighting Monitor" class="w-full h-48 object-cover rounded-xl mb-4" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
+                    <div class="flex items-center space-x-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=50&auto=format&fit=crop&ixlib=rb-4.0.3" alt="User Avatar" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=50'; this.onerror=null;" />
+                        <div>
+                            <p class="font-semibold text-secondary-900">Sari Melati</p>
+                            <p class="text-sm text-secondary-500">Bandung</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-2">Office Lighting Monitor</h3>
+                    <p class="text-secondary-600 text-sm mb-4">
+                        Monitoring pencahayaan ruang kerja untuk optimasi produktivitas karyawan. Dashboard menampilkan rekomendasi pencahayaan ideal.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex space-x-2">
+                            <span class="bg-accent-100 text-accent-700 px-2 py-1 rounded-lg text-xs font-medium">NodeMCU</span>
+                            <span class="bg-secondary-100 text-secondary-700 px-2 py-1 rounded-lg text-xs font-medium">3 Rooms</span>
+                        </div>
+                        <a href="javascript:void(0)" class="text-primary-600 font-medium hover:text-primary-700 transition-colors text-sm">
+                            Lihat Detail →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Implementation 3 -->
+                <div class="bg-secondary-50 rounded-2xl p-6 hover:shadow-elevated transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Smart Home Integration" class="w-full h-48 object-cover rounded-xl mb-4" onerror="this.src='https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;" />
+                    <div class="flex items-center space-x-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=50&auto=format&fit=crop&ixlib=rb-4.0.3" alt="User Avatar" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=50'; this.onerror=null;" />
+                        <div>
+                            <p class="font-semibold text-secondary-900">Ahmad Rizki</p>
+                            <p class="text-sm text-secondary-500">Surabaya</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-2">Smart Home Integration</h3>
+                    <p class="text-secondary-600 text-sm mb-4">
+                        Integrasi dengan Home Assistant untuk automasi lampu berdasarkan tingkat cahaya alami. Hemat energi hingga 40%.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex space-x-2">
+                            <span class="bg-primary-100 text-primary-700 px-2 py-1 rounded-lg text-xs font-medium">ESP32</span>
+                            <span class="bg-success-100 text-success-700 px-2 py-1 rounded-lg text-xs font-medium">Home Assistant</span>
+                        </div>
+                        <a href="javascript:void(0)" class="text-primary-600 font-medium hover:text-primary-700 transition-colors text-sm">
+                            Lihat Detail →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Share Your Project -->
+            <div class="mt-12 text-center">
+                <div class="bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-8 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-semibold text-secondary-900 mb-4">Bagikan Proyek Anda</h3>
+                    <p class="text-secondary-600 mb-6">
+                        Sudah berhasil membuat implementasi unik? Bagikan dengan komunitas dan dapatkan feedback dari sesama maker!
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
+                        <button class="bg-primary-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors">
+                            Submit Proyek
+                        </button>
+                        <button class="bg-white text-secondary-700 px-6 py-3 rounded-xl font-semibold border border-secondary-200 hover:bg-secondary-50 transition-colors">
+                            Lihat Guidelines
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile QR Codes -->
+    <section class="py-16 bg-secondary-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">
+                    Akses Cepat Mobile
+                </h2>
+                <p class="text-xl text-secondary-600 max-w-3xl mx-auto">
+                    Scan QR code untuk akses cepat ke repository, datasheet, dan checklist progress
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- GitHub Repository -->
+                <div class="bg-white rounded-2xl p-6 text-center shadow-floating">
+                    <div class="w-32 h-32 bg-secondary-100 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-secondary-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-2">GitHub Repository</h3>
+                    <p class="text-secondary-600 text-sm mb-4">Akses kode lengkap, dokumentasi, dan update terbaru</p>
+                    <a href="javascript:void(0)" class="text-primary-600 font-medium hover:text-primary-700 transition-colors text-sm">
+                        github.com/lightsense-monitor
+                    </a>
+                </div>
+
+                <!-- Component Datasheet -->
+                <div class="bg-white rounded-2xl p-6 text-center shadow-floating">
+                    <div class="w-32 h-32 bg-secondary-100 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-secondary-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-2">Datasheet Komponen</h3>
+                    <p class="text-secondary-600 text-sm mb-4">Spesifikasi teknis ESP32, BH1750, dan komponen lainnya</p>
+                    <a href="javascript:void(0)" class="text-accent-600 font-medium hover:text-accent-700 transition-colors text-sm">
+                        docs.lightsense-monitor.com
+                    </a>
+                </div>
+
+                <!-- Progress Checklist -->
+                <div class="bg-white rounded-2xl p-6 text-center shadow-floating">
+                    <div class="w-32 h-32 bg-secondary-100 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-secondary-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary-900 mb-2">Checklist Progress</h3>
+                    <p class="text-secondary-600 text-sm mb-4">Track progress setup dan troubleshooting interaktif</p>
+                    <a href="javascript:void(0)" class="text-success-600 font-medium hover:text-success-700 transition-colors text-sm">
+                        checklist.lightsense-monitor.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Logo & Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">LightSense Monitor</h3>
+                            <p class="text-sm text-secondary-400">Kebun Pintar IoT</p>
+                        </div>
+                    </div>
+                    <p class="text-secondary-300 mb-4 max-w-md">
+                        Membuat teknologi IoT untuk kebun pintar yang mudah diakses melalui panduan lengkap dan komponen terjangkau.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Navigasi</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="live_dashboard_homepage.html" class="hover:text-white transition-colors">Dashboard</a></li>
+                        <li><a href="analytics_hub.html" class="hover:text-white transition-colors">Analytics</a></li>
+                        <li><a href="project_setup_guide.html" class="hover:text-white transition-colors">Setup Guide</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-colors">Support</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-secondary-800 mt-8 pt-8 text-center text-secondary-400">
+                <p>&copy; 2025 LightSense Monitor. Semua hak dilindungi undang-undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactive Elements -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('button');
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', function() {
+                console.log('Mobile menu toggled');
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Code preview functionality
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Preview')) {
+                button.addEventListener('click', function() {
+                    console.log('Code preview opened');
+                    // Code preview modal would be implemented here
+                });
+            }
+        });
+
+        // Download tracking
+  function downloadFile() {
+    const link = document.createElement('a');
+    link.href = 'automatic/kebun_pintar.ino';
+    link.download = 'automatic.ino';
+    link.click();
+  }
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Download')) {
+                button.addEventListener('click', function() {
+                    console.log('Download initiated:', button.textContent);
+                    // Download tracking would be implemented here
+                });
+            }
+        });
+
+        // Progress tracking for setup steps
+        let completedSteps = JSON.parse(localStorage.getItem('setupProgress') || '[]');
+        
+        function markStepComplete(stepNumber) {
+            if (!completedSteps.includes(stepNumber)) {
+                completedSteps.push(stepNumber);
+                localStorage.setItem('setupProgress', JSON.stringify(completedSteps));
+                updateProgressIndicators();
+            }
+        }
+
+        function updateProgressIndicators() {
+            completedSteps.forEach(stepNumber => {
+                const stepElement = document.querySelector(`[data-step="${stepNumber}"]`);
+                if (stepElement) {
+                    stepElement.classList.add('completed');
+                }
+            });
+        }
+
+        // Initialize progress indicators
+        updateProgressIndicators();
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

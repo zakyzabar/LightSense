@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Monitoring Realtime Lampu</title>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 16px;
+      color: #1f2937;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      max-width: 450px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .header h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-weight: 600;
+      color: white;
+      background-color: #facc15; /* default: kuning */
+    }
+
+    .connected {
+      background-color: #22c55e;
+    }
+
+    .offline {
+      background-color: #ef4444;
+    }
+
+    .sensor-value {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      margin: 16px 0;
+      color: #111827;
+    }
+
+    .lamp-container {
+      text-align: center;
+    }
+
+    #lamp-image {
+      width: 100px;
+      height: 100px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    #lamp-image.on {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 10px #facc15);
+    }
+
+    #lamp-image.off {
+      opacity: 0.5;
+    }
+
+    .status-label {
+      text-align: center;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .raw {
+      margin-top: 12px;
+      font-size: 12px;
+      background-color: #f3f4f6;
+      padding: 8px;
+      border-radius: 8px;
+      color: #6b7280;
+      font-family: monospace;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <h2>💡 Monitoring Lampu</h2>
+      <div id="status-badge" class="badge">Menyambung...</div>
+    </div>
+
+    <div class="sensor-value" id="sensor-value">--</div>
+
+    <div class="lamp-container">
+      <img id="lamp-image" src="lampu-mati.png" alt="Lampu" class="off">
+      <p id="lamp-status" class="status-label">Lampu: MATI</p>
+    </div>
+
+    <div id="raw-message" class="raw">Menunggu data sensor...</div>
+  </div>
+
+  <script>
+    const client = mqtt.connect('wss://rmq.corex.id:8084/mqtt', {
+      clientId: 'webclient_' + Math.random().toString(16).substr(2, 8),
+      username: 'kelompok11',
+      password: 'kelompok11',
+      clean: true,
+      connectTimeout: 4000,
+    });
+
+    const badge = document.getElementById('status-badge');
+    const valueEl = document.getElementById('sensor-value');
+    const lampImg = document.getElementById('lamp-image');
+    const lampStatus = document.getElementById('lamp-status');
+    const rawEl = document.getElementById('raw-message');
+
+    client.on('connect', () => {
+      console.log("✅ Terhubung ke MQTT");
+      badge.textContent = "Terhubung";
+      badge.className = "badge connected";
+      client.subscribe('iot/cahaya');
+    });
+
+client.on('message', (topic, message) => {
+  const msg = message.toString();
+  rawEl.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+
+  const cahayaMatch = msg.match(/Cahaya:(\d+)/);
+  const lampuMatch = msg.match(/Lampu:(ON|OFF)/);
+
+  const value = cahayaMatch ? cahayaMatch[1] : '--';
+  const lampuStatusVal = lampuMatch ? lampuMatch[1] : '';
+
+  valueEl.textContent = value;
+
+  if (lampuStatusVal === "ON") {
+    lampImg.src = "lampu-nyala.png";
+    lampImg.classList.add('on');
+    lampImg.classList.remove('off');
+    lampStatus.textContent = "Lampu: NYALA";
+  } else if (lampuStatusVal === "OFF") {
+    lampImg.src = "lampu-mati.png";
+    lampImg.classList.add('off');
+    lampImg.classList.remove('on');
+    lampStatus.textContent = "Lampu: MATI";
+  } else {
+    lampStatus.textContent = "Status tidak dikenal";
+  }
+
+  setTimeout(() => {
+    const height = document.documentElement.scrollHeight;
+    window.parent.postMessage({ frameHeight: height }, "*");
+  }, 100);
+});
+
+
+
+    client.on('offline', () => {
+      console.warn("⚠️ MQTT Offline");
+      badge.textContent = "Offline";
+      badge.className = "badge offline";
+    });
+
+    client.on('error', (err) => {
+      console.error("❌ MQTT Error:", err);
+      badge.textContent = "Gagal Terhubung";
+      badge.className = "badge offline";
+    });
+
+    // Awal: kirim tinggi saat halaman dimuat
+    window.onload = () => {
+      const height = document.documentElement.scrollHeight;
+      window.parent.postMessage({ frameHeight: height }, "*");
+    };
+  </script>
+</body>
+</html>
